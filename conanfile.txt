@@ -1,5 +1,6 @@
 [requires]
 catch2/3.10.0
+nlohmann_json/3.12.0
 symengine/0.14.0
 
 [generators]

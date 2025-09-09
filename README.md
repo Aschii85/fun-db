@@ -64,7 +64,9 @@ int main() {
 }
 ```
 
-## Build and Run main.cpp
+## Build and Run Guideline
+
+### main.cpp Example
 
 To build the project and run the main.cpp example, you will use Conan for dependency management and CMake for the build system.
 
@@ -76,4 +78,36 @@ cd build
 cmake .. -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 ./my_app
+```
+
+### Web Server
+
+The above will also create a server executable in the `build/` dir. Execute the server from the build directory. It will start listening for requests on port 6374.
+
+```bash
+./my_app_server
+```
+
+You should see a message in the console indicating that the server is listening on port 6374 (by default).
+
+#### Interact with the API
+
+You can now use curl or any other HTTP client to interact with the server's API endpoints.
+
+Store a new function: Send a POST request to the /store endpoint with a JSON payload containing the function's name, expression, and a list of symbols.
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"name": "linear_func", "symbols": ["x", "y"], "expression": "2*x + 3*y"}' http://localhost:6374/store
+```
+
+Load a function: Send a GET request to the /load/<name> endpoint, where <name> is the function's name.
+
+```bash
+curl http://localhost:6374/load/linear_func
+```
+
+Evaluate a function: Send a POST request to the /evaluate endpoint with the function's name and a JSON object of values for its symbols.
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"name": "linear_func", "values": {"x": 10, "y": 5}}' http://localhost:6374/evaluate
 ```
