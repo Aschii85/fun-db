@@ -15,3 +15,6 @@ CMakeUserPresets.json
 *.o
 *.out
 *.exe
+
+# IDEs and editors
+.vscode/
