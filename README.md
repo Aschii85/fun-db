@@ -2,14 +2,24 @@
 
 > This code is a work in progress 
 
-Welcome to FunDB - a small database for storing functions.
+Welcome to FunDB - a fast, lightweight, and extensible on-disk database for storing and retrieving symbolic functions.
 
-Instead of storing discrete function values as is the case for most databases, FunDB stores functions in a compact, on-disk format, powered by the SymEngine symbolic manipulation library. This allows you to store and retrieve symbolic functions, which can then be evaluated at runtime with different variable values.
+FunDB is a unique database built in C++ that distinguishes itself by storing mathematical functions rather than discrete data points. Using the powerful SymEngine library for symbolic manipulation, it allows you to save and load complex expressions and evaluate them at runtime.
+
+The core of FunDB is a persistent on-disk hash table, which provides extremely fast lookups by function name. This makes it ideal for applications that require quick, symbolic function retrieval without the overhead of a traditional database.
+
+## Key Features
+- **Symbolic Storage**: Stores mathematical expressions as strings, which can be re-evaluated on the fly.
+- **High Performance**: Uses an efficient, custom hash table for fast lookups.
+- **Small Footprint**: A lightweight solution built on a simple file-based architecture.
+- **C++ Powered**: Built with modern C++ standards for performance and reliability.
+- **Extensible**: Easily adaptable for a wide range of symbolic-driven applications.
 
 ## Project Structure
-- `inc/`: Contains all public header files, including fun.h (for the Function class) and db.h (for the Database class).
-- `src/`: Contains the C++ source code files. main.cpp demonstrates the usage of the database, while fun.cpp and db.cpp contain the implementations for the Function and Database classes, respectively.
+- `inc/`: Contains all public header files, including `fun.h` (for the Function class) and `db.h` (for the Database class).
+- `src/`: Contains the C++ source code files. `main.cpp` demonstrates the usage of the database, while `fun.cpp` and `db.cpp` contain the implementations for the Function and Database classes, respectively.
 - `CMakeLists.txt`: The CMake build configuration file.
+- `conanfile.txt`: Dependencies to be installed using the `conan` package manager.
 
 
 ## How It Works
